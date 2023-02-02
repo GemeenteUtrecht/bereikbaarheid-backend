@@ -1,0 +1,40 @@
+version: '3.6'
+
+services:
+  backend:
+    build:
+        context: .
+    container_name: utrecht-bereikbaarheid-backend
+    volumes:
+      - ./src:/app/src
+    env_file:
+      - ".env"
+    ports:
+      - "8000:8000"
+    depends_on:
+      - database
+
+  database:
+    build:
+      context: .
+      dockerfile: Dockerfile_database
+    container_name: utrecht-bereikbaarheid-database
+    environment:
+      - POSTGRES_USER=bereikbaarheid_user
+      - POSTGRES_PASS=supersecret
+      - POSTGRES_DBNAME=bereikbaarheid
+      - SCHEMA_NAME=bereikbaarheid
+      - POSTGRES_MULTIPLE_EXTENSIONS=postgis,pgrouting
+      - ALLOW_IP_RANGE=0.0.0.0/0
+      - GENERATE_ALL_LOCALE=0
+    ports:
+      - "25432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql
+
+networks:
+  default:
+    name: utrecht-bereikbaarheid
+
+volumes:
+  db_data:

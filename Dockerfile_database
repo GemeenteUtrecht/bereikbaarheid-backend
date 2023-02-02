@@ -1,0 +1,4 @@
+FROM kartoza/postgis:14-3.2
+
+# install postgis commandline tools such as shp2pgsql
+RUN apt-get update && apt-get install -y postgis

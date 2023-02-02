@@ -1,0 +1,6 @@
+version: '3.6'
+
+services:
+  database:
+    volumes:
+      - /path/to/the/local/folder:/opt/data

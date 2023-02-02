@@ -1,0 +1,9 @@
+#
+# Define base dependencies
+#
+
+apiflask
+psycopg2-binary
+
+black
+flake8
