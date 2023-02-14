@@ -80,130 +80,86 @@ def query_db_permits(
 
     db_query = """
         select json_build_object(
-            'id', id,
+            'id', level_a.id,
             'attributes',json_build_object(
-                'afstandTotBestemmingInMeters', afstand_in_m::int,
-                'behoeftOntheffingRvv', rvv_boolean::boolean,
-                'locatie', geom
-            )
-        )
+                'afstandTotBestemmingInMeters', (
+                                SELECT st_length(st_transform(st_shortestline(st_setsrid(ST_MakePoint(%(lon)s, %(lat)s),4326),st_linemerge(a.geom4326)),28992))
+                                from bereikbaarheid.nwb_wegvakken_selection_enriched_directed a
+                                where bst_code_binair= true
+                                order by st_length(st_transform(st_shortestline(st_setsrid(
+                                                ST_MakePoint(%(lon)s, %(lat)s),4326),st_linemerge(a.geom4326)),28992)
+                                ) asc
+                                limit 1
+                            )::int,
+                'behoeftOntheffingRvv', level_a.rvv_boolean::boolean,
+                'locatie', level_a.geom))
         from (
-            select v.id,
-            case
-                when v.bereikbaar_status_code = 888 then 'true'
-                when v.bereikbaar_status_code = 777 then 'true'
-                when v.bereikbaar_status_code = 666 then 'true'
-                when v.bereikbaar_status_code = 444 then 'true'
-                else 'false'
-            end as rvv_boolean,
-
-            ST_closestpoint(
-                st_transform(v.geom, 4326),
-                st_setsrid(ST_MakePoint(%(lon)s, %(lat)s), 4326)
-            ) as geom,
-
-            st_length(
-                st_transform(
-                    st_shortestline(
-                        st_transform(v.geom,4326),
+            select level_aa.id,
+            case	when level_aa.bereikbaar_status_code = 111 then true
+                    when level_aa.bereikbaar_status_code = 222 then true
+                    when level_aa.bereikbaar_status_code = 333 then true
+                    when level_aa.bereikbaar_status_code = 444 then true
+                    else false end as rvv_boolean,
+             ST_closestpoint(
+                        st_transform(level_aa.geom, 4326),
                         st_setsrid(ST_MakePoint(%(lon)s, %(lat)s), 4326)
-                    ),
-                    28992
-                )
-            ) as afstand_in_m
-
+                    ) as geom
             from (
-                select
-                    abs(n.id) as id,
-                    max(
-                        case
-                            when n.cost is NULL then 888
-                            when routing.agg_cost is null then 777
-                            when (n.c07 is true and %(bedrijfsauto)s is true and %(max_massa)s > 3500)
-                                or n.c07a is true and %(bus)s is true
-                                or n.c10 is true and %(aanhanger)s is true
-                                or n.c17 < %(lengte)s
-                                or n.c18 < %(breedte)s
-                                or n.c19 < %(hoogte)s
-                                or n.c20 < %(aslast)s
-                                or n.c21 < %(gewicht)s
-                                then 666
-                            else 444
-                        end
-                    ) as bereikbaar_status_code,
-                    g.geom as geom
-                from bereikbaarheid.nwb_wegvakken_selection_enriched_directed n
+                select abs(level_aaa.id) as id,
+                max(
+                case	when level_aaa.cost is NULL then 111
+                        when level_aab.agg_cost is null then 222
+                        when level_aaa.c07 is true and %(bedrijfsauto)s is true
+                        and %(max_massa)s > 3500
+                        or level_aaa.c07a is true and %(bus)s is true
+                        or level_aaa.c10 is true and %(aanhanger)s is true
+                        or level_aaa.c17 < %(lengte)s
+                        or level_aaa.c18 < %(breedte)s
+                        or level_aaa.c19 < %(hoogte)s
+                        or level_aaa.c20 < %(aslast)s
+                        or level_aaa.c21 < %(gewicht)s
+                        then 333
+                        else 999 end ) as bereikbaar_status_code,
+                level_aac.geom
+                from bereikbaarheid.nwb_wegvakken_selection_enriched_directed level_aaa
                 left join (
                     SELECT start_vid as source,
                     end_vid as target,
-                    agg_cost FROM pgr_dijkstraCost('
+                    agg_cost
+                    FROM pgr_dijkstraCost('
                         select id, source, target, cost
-                        from bereikbaarheid.nwb_wegvakken_selection_enriched_directed
-                        where (%(lengte)s < c17 or c17 is null)
-                        and (%(breedte)s < c18 or c18 is null)
-                        and (%(hoogte)s < c19 or c19 is null)
-                        and (%(aslast)s < c20 or c20 is null)
-                        and (%(gewicht)s < c21 or c21 is null)
-                        and (
-                                c07 is false
-                                or (c07 is true and %(bedrijfsauto)s is false)
-                                or (
-                                    c07 is true
-                                    and %(bedrijfsauto)s is true
-                                    and %(max_massa)s <= 3500
-                                )
-                            )
-                            and (
-                                c07a is false
-                                or (c07a is true and %(bus)s is false)
-                            )
-                            and (
-                                c10 is false
-                                or (c10 is true and %(aanhanger)s is false)
-
-                        )
-                        ',
+                        from bereikbaarheid.nwb_wegvakken_selection_enriched_directed as level_aaba
+                        where level_aaba.cost > 0
+                        and ((( -.01 + %(lengte)s ) < level_aaba.c17 or level_aaba.c17 is null)
+                            and (( -.01 + %(breedte)s ) < level_aaba.c18 or level_aaba.c18 is null)
+                            and (( -.01 +%(hoogte)s ) < level_aaba.c19 or level_aaba.c19 is null)
+                            and (( -1 + %(aslast)s ) < level_aaba.c20 or level_aaba.c20 is null)
+                            and (( -1 + %(gewicht)s ) < level_aaba.c21 or level_aaba.c21 is null)
+                            and 	( level_aaba.c07 is false or (level_aaba.c07 is true and %(bedrijfsauto)s is false)
+                                    or (level_aaba.c07 is true and %(bedrijfsauto)s is true and %(max_massa)s <= 3500))
+                            and (level_aaba.c07a is false or (level_aaba.c07a is true and %(bus)s is false))
+                            and (level_aaba.c10 is false or (level_aaba.c10 is true and %(aanhanger)s is false))
+                            )',
                         271319101,
-                        array(
-                            select node
-                            from bereikbaarheid.bereikbaarheid.nwb_wegvakken_selection_node
-                        )
-                    )
-                ) as routing on n.source=routing.target
-
-                left join bereikbaarheid.nwb_wegvakken_selection_enriched_directed g
-                    on abs(n.id) = g.id
-                    where abs(n.id) in (
-                        select id
-                        from bereikbaarheid.nwb_wegvakken_selection_enriched_directed
-                        where id > 0
-                    )
-                    and n.cost > 0
-
-                group by abs(n.id), g.geom
-                order by abs(n.id)) v
-
-                left join bereikbaarheid.nwb_wegvakken_selection_enriched_directed as tiles
-                    on v.id=tiles.id
-                    where v.id = (
-                        SELECT id
-                        from bereikbaarheid.nwb_wegvakken_selection_enriched_directed a
-                        where a.id > 0
-                        order by st_length(
-                            st_transform(
-                                st_shortestline(
-                                    st_setsrid(
-                                        ST_MakePoint(%(lon)s, %(lat)s),
-                                        4326
-                                    ),
-                                    st_linemerge(a.geom4326)
-                                ),
-                                4326
-                            )
-                        ) asc
-                        limit 1
-                    )
-        ) m """  # noqa: E501 - ignore line-length in case of long table names
+                        array(select level_aabx.node from bereikbaarheid.nwb_wegvakken_selection_node as level_aabx))
+                ) as level_aab
+                on level_aaa.source = level_aab.target
+                left join bereikbaarheid.nwb_wegvakken_selection_enriched_directed level_aac
+                on abs(level_aaa.id) = level_aac.id
+                where abs(level_aaa.id) in (select level_aax.id from bereikbaarheid.nwb_wegvakken_selection_enriched_directed as level_aax where level_aax.id > 0)
+                and level_aaa.cost > 0
+                and level_aaa.gme_id = 344
+                and level_aaa.wegbehsrt = 'G'
+                group by abs(level_aaa.id), level_aac.geom
+                order by abs(level_aaa.id)
+            ) as level_aa
+            where level_aa.id = (	SELECT  abs(id)
+                                    from bereikbaarheid.nwb_wegvakken_selection_enriched_directed a
+                                    where bst_code_binair= true
+                                    order by  st_length(st_transform(st_shortestline(st_setsrid(ST_MakePoint(%(lon)s, %(lat)s),4326),st_linemerge(a.geom4326)),28992)) asc,
+                                    a.cost desc
+                                    limit 1)
+        ) as level_a """  # noqa: E501 - ignore line-length in case of long table names
 
     query_params = {
         "bedrijfsauto": vehicleTypes.vehicle_is_company_car(vehicle_type),
