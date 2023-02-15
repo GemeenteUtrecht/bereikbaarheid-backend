@@ -215,8 +215,6 @@ def query_db_permits(
         "aslast": vehicle_axle_weight,
         "gewicht": vehicle_total_weight,
         "max_massa": vehicle_max_allowed_weight,
-        "permit_zone_milieu": True,
-        "permit_zone_7_5": True,
         "lat": lat,
         "lon": lon,
     }
