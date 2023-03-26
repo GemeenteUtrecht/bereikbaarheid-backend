@@ -1,3 +1,4 @@
+from apiflask import Schema, fields
 import logging
 
 from .. import api_v1
@@ -6,8 +7,13 @@ from ....db import query_db
 LOGGER = logging.getLogger("gunicorn_error")
 
 
-@api_v1.get("/wegvakken/<int:wegvakId>")
-def road_section_by_id(wegvakId):
+class RoadSectionsValidationSchema(Schema):
+    wegvakId = fields.Integer(required=True)
+
+
+@api_v1.get("/wegvakken/<wegvakId>")
+@api_v1.input(RoadSectionsValidationSchema, location="path")
+def road_section_by_id(wegvakId, _):
     """Wegvak kenmerken
 
     Retourneert een wegvak als FeatureCollection op basis van het NWB wegvak ID
