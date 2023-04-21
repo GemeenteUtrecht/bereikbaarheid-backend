@@ -2,7 +2,7 @@
 # Define base dependencies
 #
 
-apiflask == 1.2.3
+apiflask
 psycopg2-binary
 
 black
