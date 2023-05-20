@@ -29,7 +29,10 @@ jobs:
         if: steps.cache-virtualenv.outputs.cache-hit != 'true'
 
       - name: Lint
-        run: flake8 src
+        run: flake8
 
       - name: Check formatting
-        run: black src --check --diff
+        run: black . --check --diff
+
+      - name: Run tests
+        run: pytest --cov-report term-missing --cov=src.app tests

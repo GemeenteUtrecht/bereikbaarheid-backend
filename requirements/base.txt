@@ -14,6 +14,8 @@ click==8.1.3
     # via
     #   black
     #   flask
+coverage[toml]==7.2.5
+    # via pytest-cov
 flake8==6.0.0
     # via -r base.in
 flask==2.2.3
@@ -25,6 +27,8 @@ flask-httpauth==4.7.0
     # via apiflask
 flask-marshmallow==0.15.0
     # via apiflask
+iniconfig==2.0.0
+    # via pytest
 itsdangerous==2.1.2
     # via flask
 jinja2==3.1.2
@@ -47,17 +51,26 @@ packaging==23.1
     #   black
     #   flask-marshmallow
     #   marshmallow
+    #   pytest
     #   webargs
 pathspec==0.11.1
     # via black
 platformdirs==3.2.0
     # via black
+pluggy==1.0.0
+    # via pytest
 psycopg2-binary==2.9.6
     # via -r base.in
 pycodestyle==2.10.0
     # via flake8
 pyflakes==3.0.1
     # via flake8
+pytest==7.3.1
+    # via
+    #   -r base.in
+    #   pytest-cov
+pytest-cov==4.0.0
+    # via -r base.in
 webargs==8.2.0
     # via apiflask
 werkzeug==2.2.3

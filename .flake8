@@ -1,10 +1,12 @@
 [flake8]
 exclude =
     .git,
+    .github,
     __pycache__,
     docs,
     log,
-    requirements
+    requirements,
+    venv
 extend-ignore = E203
 max-line-length = 79
 max-complexity = 10
