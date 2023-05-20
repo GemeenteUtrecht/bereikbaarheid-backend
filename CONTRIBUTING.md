@@ -15,12 +15,12 @@ Before making making changes to the code, we advise you to first check the list 
 ### Code style
 To keep the code clean and readable, we use:
 
-- [`flake8`](https://flake8.pycqa.org/en/latest/). Het bestand `.flake8` bevat de config. Om code te linten, start de Docker container en draai het volgende commando: `docker compose exec backend flake8 src`. De output is een lijst met gevonden issues. Zie [deze site](https://www.flake8rules.com) voor uitleg van linting errors.
+- [`flake8`](https://flake8.pycqa.org/en/latest/). Het bestand `.flake8` bevat de config. Om code te linten, start de Docker container en draai het volgende commando: `docker compose exec backend flake8`. De output is een lijst met gevonden issues. Zie [deze site](https://www.flake8rules.com) voor uitleg van linting errors.
 - [`black`](https://black.readthedocs.io/en/stable/). Om code te formatten, start de Docker container en
-  - check welke bestanden moeten worden gereformat met: `docker compose exec backend black src --check`.
-  - bekijk een diff van de reformat met: `docker compose exec backend black src --check --diff`.
+  - check welke bestanden moeten worden gereformat met: `docker compose exec backend black . --check`.
+  - bekijk een diff van de reformat met: `docker compose exec backend black . --check --diff`.
   - format
-    - alle bestanden met: `docker compose exec backend black src`.
+    - alle bestanden met: `docker compose exec backend black .`.
     - één bestand met: `docker compose exec backend black src/app/api/__init__.py`.
 
 ### Obtaining a local copy of the repository
