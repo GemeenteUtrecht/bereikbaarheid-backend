@@ -15,7 +15,7 @@ Vanuit de root, draai het volgende commando voor het requirements file wat je wi
 Bijvoorbeeld voor productie dependencies:
 ```
 $ cd backend
-$ docker run --rm -v $(pwd)/requirements:/requirements utrecht-bereikbaarheid-generate-python-deps --dry-run production.in
+$ docker run --rm -v $(pwd)/requirements:/requirements utrecht-bereikbaarheid-generate-python-deps --dry-run --resolver=backtracking production.in
 ```
 De output kun je copy-pasten naar de bijhorende `txt` file.
 
@@ -25,6 +25,6 @@ Vanuit de root, draai het volgende commando voor het requirements file wat je wi
 Bijvoorbeeld voor productie dependencies:
 ```
 $ cd backend
-$ docker run --rm -v $(pwd)/requirements:/requirements utrecht-bereikbaarheid-generate-python-deps --dry-run --upgrade production.in
+$ docker run --rm -v $(pwd)/requirements:/requirements utrecht-bereikbaarheid-generate-python-deps --dry-run --resolver=backtracking --upgrade production.in
 ```
 De output kun je copy-pasten naar de bijhorende `txt` file.
