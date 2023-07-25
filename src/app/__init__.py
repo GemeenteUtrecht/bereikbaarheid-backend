@@ -16,6 +16,15 @@ def create_app():
     )
 
     # Config
+    # set servers to configure "Servers" dropdown in Swagger UI
+    app.config["AUTO_SERVERS"] = False
+    app.config["SERVERS"] = [
+        {
+            "name": "API Nationaal wegenbestand",
+            "url": os.environ.get("API_ROOT_URL"),
+        }
+    ]
+
     SECRET_KEY = os.environ.get("APP_SECRET", default=None)
     if not SECRET_KEY:
         raise ValueError("No secret key set for Flask application")
