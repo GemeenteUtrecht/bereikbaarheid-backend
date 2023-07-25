@@ -12,10 +12,19 @@ def create_app():
     info: https://flask.palletsprojects.com/en/1.1.x/patterns/appfactories/
     """
     app = APIFlask(
-        __name__, title="API Nationaal wegenbestand", version="0.4.1"
+        __name__, title="API Nationaal wegenbestand", version="0.4.2"
     )
 
     # Config
+    # set servers to configure "Servers" dropdown in Swagger UI
+    app.config["AUTO_SERVERS"] = False
+    app.config["SERVERS"] = [
+        {
+            "name": "API Nationaal wegenbestand",
+            "url": os.environ.get("API_ROOT_URL"),
+        }
+    ]
+
     SECRET_KEY = os.environ.get("APP_SECRET", default=None)
     if not SECRET_KEY:
         raise ValueError("No secret key set for Flask application")
