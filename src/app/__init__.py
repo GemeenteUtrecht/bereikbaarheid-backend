@@ -12,7 +12,7 @@ def create_app():
     info: https://flask.palletsprojects.com/en/1.1.x/patterns/appfactories/
     """
     app = APIFlask(
-        __name__, title="API Nationaal wegenbestand", version="0.4.1"
+        __name__, title="API Nationaal wegenbestand", version="0.4.2"
     )
 
     # Config
