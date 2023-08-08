@@ -10,21 +10,21 @@ LOGGER = logging.getLogger("gunicorn_error")
 
 @api_v1.get("/rvv/wegvakken")
 @api_v1.input(VehicleValidationSchema, location="query")
-def roads_sections_rvv(query):
+def roads_sections_rvv(query_data):
     """Wegvakken waarvoor een RVV ontheffing nodig is obv voertuig kenmerken
 
     Retourneert wegvakken waarvoor een RVV ontheffing nodig is obv
     voertuig kenmerken in FeatureCollection format.
     """
     return query_db_road_sections_rvv(
-        query["voertuigType"],
-        query["voertuigLengte"],
-        query["voertuigBreedte"],
-        query["voertuigHeeftAanhanger"],
-        query["voertuigHoogte"],
-        query["voertuigAslast"],
-        query["voertuigTotaalGewicht"],
-        query["voertuigToegestaanMaximaalGewicht"],
+        query_data["voertuigType"],
+        query_data["voertuigLengte"],
+        query_data["voertuigBreedte"],
+        query_data["voertuigHeeftAanhanger"],
+        query_data["voertuigHoogte"],
+        query_data["voertuigAslast"],
+        query_data["voertuigTotaalGewicht"],
+        query_data["voertuigToegestaanMaximaalGewicht"],
     )
 
 

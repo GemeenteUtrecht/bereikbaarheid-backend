@@ -28,22 +28,22 @@ class RvvTrafficSignsValidationSchema(VehicleValidationSchema):
 
 @api_v1.get("/rvv/verkeersborden")
 @api_v1.input(RvvTrafficSignsValidationSchema, location="query")
-def traffic_signs(query):
+def traffic_signs(query_data):
     """Verkeersborden obv voertuig kenmerken
 
     Retourneert verkeersborden obv voertuig kenmerken
     in FeatureCollection format.
     """
     result = query_db_traffic_signs(
-        query["categorie"],
-        query["voertuigAslast"],
-        query["voertuigHeeftAanhanger"],
-        query["voertuigHoogte"],
-        query["voertuigLengte"],
-        query["voertuigToegestaanMaximaalGewicht"],
-        query["voertuigTotaalGewicht"],
-        query["voertuigType"],
-        query["voertuigBreedte"],
+        query_data["categorie"],
+        query_data["voertuigAslast"],
+        query_data["voertuigHeeftAanhanger"],
+        query_data["voertuigHoogte"],
+        query_data["voertuigLengte"],
+        query_data["voertuigToegestaanMaximaalGewicht"],
+        query_data["voertuigTotaalGewicht"],
+        query_data["voertuigType"],
+        query_data["voertuigBreedte"],
     )
 
     # https://datatracker.ietf.org/doc/html/rfc7946#section-3.3

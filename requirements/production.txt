@@ -4,8 +4,9 @@
 #
 #    pip-compile --resolver=backtracking production.in
 #
-gunicorn==20.1.0
+gunicorn==21.2.0
     # via -r production.in
-
-# The following packages are considered to be unsafe in a requirements file:
-# setuptools
+packaging==23.1
+    # via
+    #   -c base.txt
+    #   gunicorn
