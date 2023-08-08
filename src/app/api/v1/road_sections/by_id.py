@@ -13,7 +13,7 @@ class RoadSectionsValidationSchema(Schema):
 
 @api_v1.get("/wegvakken/<wegvakId>")
 @api_v1.input(RoadSectionsValidationSchema, location="path")
-def road_section_by_id(wegvakId, _):
+def road_section_by_id(path_data, wegvakId):
     """Wegvak kenmerken
 
     Retourneert een wegvak als FeatureCollection op basis van het NWB wegvak ID

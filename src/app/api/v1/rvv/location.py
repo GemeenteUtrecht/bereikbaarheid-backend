@@ -27,23 +27,23 @@ class RvvLocationValidationSchema(VehicleValidationSchema):
 
 @api_v1.get("/rvv/locatie")
 @api_v1.input(RvvLocationValidationSchema, location="query")
-def permits(query):
+def permits(query_data):
     """RVV info obv locatie en voertuigkenmerken
 
     Retourneert RVV informatie obv locatie en voertuigkenmerken
     in JSONAPI format.
     """
     return query_db_permits(
-        query["voertuigType"],
-        query["voertuigLengte"],
-        query["voertuigBreedte"],
-        query["voertuigHeeftAanhanger"],
-        query["voertuigHoogte"],
-        query["voertuigAslast"],
-        query["voertuigTotaalGewicht"],
-        query["voertuigToegestaanMaximaalGewicht"],
-        query["lat"],
-        query["lon"],
+        query_data["voertuigType"],
+        query_data["voertuigLengte"],
+        query_data["voertuigBreedte"],
+        query_data["voertuigHeeftAanhanger"],
+        query_data["voertuigHoogte"],
+        query_data["voertuigAslast"],
+        query_data["voertuigTotaalGewicht"],
+        query_data["voertuigToegestaanMaximaalGewicht"],
+        query_data["lat"],
+        query_data["lon"],
     )
 
 
