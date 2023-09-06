@@ -21,6 +21,11 @@ class RvvTrafficSignsValidationSchema(VehicleValidationSchema):
                 ]
             ),
         ),
+        metadata={
+            "description": "Eén of meerdere verkeersbordcategorieën",
+            "example": ["verbod met uitzondering", "verplichting"],
+            "title": "Verkeersbordcategorie",
+        },
         required=True,
         validate=validators.Length(min=1),
     )
