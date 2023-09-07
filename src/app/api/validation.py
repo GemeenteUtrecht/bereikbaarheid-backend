@@ -36,6 +36,11 @@ class VehicleValidationSchema(Schema):
     """
 
     voertuigAslast = fields.Integer(
+        metadata={
+            "description": "De aslast van het voertuig in kilogram",
+            "example": 10000,
+            "title": "Aslast van het voertuig",
+        },
         required=True,
         validate=[
             validators.Range(
@@ -45,9 +50,21 @@ class VehicleValidationSchema(Schema):
         ],
     )
 
-    voertuigHeeftAanhanger = fields.Boolean(required=True)
+    voertuigHeeftAanhanger = fields.Boolean(
+        metadata={
+            "description": "Heeft het voertuig een aanhanger?",
+            "example": False,
+            "title": "Indicator voor een aanhanger",
+        },
+        required=True,
+    )
 
     voertuigHoogte = fields.Float(
+        metadata={
+            "description": "De hoogte van het voertuig in meters",
+            "example": 3.13,
+            "title": "Hoogte van het voertuig",
+        },
         required=True,
         validate=[
             validators.Range(
@@ -59,6 +76,11 @@ class VehicleValidationSchema(Schema):
     )
 
     voertuigLengte = fields.Float(
+        metadata={
+            "description": "De lengte van het voertuig in meters",
+            "example": 13.95,
+            "title": "Lengte van het voertuig",
+        },
         required=True,
         validate=[
             validators.Range(
@@ -68,6 +90,14 @@ class VehicleValidationSchema(Schema):
     )
 
     voertuigToegestaanMaximaalGewicht = fields.Integer(
+        metadata={
+            "description": (
+                "Het maximaal toegestane gewicht "
+                "van het voertuig in kilogram"
+            ),
+            "example": 24600,
+            "title": "Maximaal toegestane gewicht van het voertuig",
+        },
         required=True,
         validate=[
             validators.Range(
@@ -78,6 +108,11 @@ class VehicleValidationSchema(Schema):
     )
 
     voertuigTotaalGewicht = fields.Integer(
+        metadata={
+            "description": "Het totale gewicht van het voertuig in kilogram",
+            "example": 22150,
+            "title": "Totale gewicht van het voertuig",
+        },
         required=True,
         validate=[
             validators.Range(
@@ -87,13 +122,28 @@ class VehicleValidationSchema(Schema):
         ],
     )
 
-    voertuigType = fields.String(required=True)
+    voertuigType = fields.String(
+        metadata={
+            "description": (
+                "Het RDW type van het voertuig: "
+                "Bedrijfsauto, Bus of Personenauto"
+            ),
+            "example": "Bedrijfsauto",
+            "title": "RDW type van het voertuig",
+        },
+        required=True,
+    )
 
     @validates("voertuigType")
     def allowed_vehicle_types(self, value):
         allowed_vehicle_types(value)
 
     voertuigBreedte = fields.Float(
+        metadata={
+            "description": "De breedte van het voertuig in meters",
+            "example": 2.55,
+            "title": "Breedte van het voertuig",
+        },
         required=True,
         validate=[
             validators.Range(

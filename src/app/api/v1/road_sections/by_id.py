@@ -8,7 +8,14 @@ LOGGER = logging.getLogger("gunicorn_error")
 
 
 class RoadSectionsValidationSchema(Schema):
-    wegvakId = fields.Integer(required=True)
+    wegvakId = fields.Integer(
+        metadata={
+            "description": "Het NWB wegvak ID",
+            "example": 600778786,
+            "title": "NWB wegvak ID",
+        },
+        required=True,
+    )
 
 
 @api_v1.get("/wegvakken/<wegvakId>")
