@@ -33,6 +33,19 @@ services:
     volumes:
       - db_data:/var/lib/postgresql
 
+  generate_deps: &generate_deps
+    build:
+      context: .
+      dockerfile: Dockerfile_python_deps
+    command: --strip-extras requirements.in
+    restart: no
+    volumes:
+        - .:/app
+
+  upgrade_deps:
+    <<: *generate_deps
+    command: --strip-extras --upgrade requirements.in
+
 networks:
   default:
     name: utrecht-bereikbaarheid

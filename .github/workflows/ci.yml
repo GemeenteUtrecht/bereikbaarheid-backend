@@ -23,7 +23,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip pip-tools
-          pip-sync requirements/base.txt requirements/production.txt
+          pip-sync requirements.txt
         if: steps.cache-virtualenv.outputs.cache-hit != 'true'
 
       - name: Lint

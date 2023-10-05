@@ -5,7 +5,8 @@ exclude =
     __pycache__,
     docs,
     log,
-    requirements,
+    requirements.in,
+    requirements.txt,
     venv
 extend-ignore = E203
 max-line-length = 79
