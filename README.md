@@ -7,7 +7,6 @@ Zie de [interactieve API docs pagina](https://api.nationaalwegenbestand.nl/docs)
 Deze repo is als volgt ingedeeld:
 
 * `docs` bevat documentatie over diverse aspecten.
-* `requirements` bevat de Python applicatie requirements.
 * `src`
   * `app` bevat een Flask applicatie met 1) de API (`src/app/api`) en 2) een status endpoint (`src/app/status`).
   * `config` bevat de verschillende config files
@@ -16,6 +15,7 @@ Deze repo is als volgt ingedeeld:
 * `Dockerfile_python_deps`; gebruikt voor onderhoud aan Python dependencies, zie het [maintenance document](./docs/maintenance.md) voor meer info.
 * `.flake8`; Flake8 linting config, zie het [Contributing document](./CONTRIBUTING.md) voor meer info.
 * `pyproject.toml`; Black formatting config, zie het [Contributing document](./CONTRIBUTING.md) voor meer info.
+* `requirements.*` bevat de Python applicatie requirements.
 
 ## Getting Started
 Om lokaal te kunnen ontwikkelen wordt gebruik gemaakt van Docker Compose. 
@@ -41,4 +41,8 @@ You can override or add items to the `docker-compose.yaml` by using an override 
 You would like to contribute? Great! All input, feedback and improvements are very welcome. Whether it is reporting a problem, suggesting a change, asking a question, improving the docs or code. Please have a look at the [Contributing document](./CONTRIBUTING.md).
 
 ## Maintenance
-Please see [the maintenance documentation](./docs/maintenance.md) for info about how to update Python dependencies.
+The dockerfile `Dockerfile_python_deps` is used to generate and upgrade Python dependencies.
+
+From the root folder, use the following commands to:
+- generate dependencies: `docker compose up --build generate_deps`
+- upgrade dependencies: `docker compose up --build upgrade_deps`

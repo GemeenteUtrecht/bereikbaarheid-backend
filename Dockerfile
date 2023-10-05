@@ -6,11 +6,11 @@ RUN python -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 
 # Add and install build dependencies
-COPY requirements .
+COPY requirements.txt .
 RUN pip install --upgrade pip pip-tools
 
 # Sync virtual env with app's dependencies
-RUN pip-sync base.txt production.txt
+RUN pip-sync requirements.txt
 
 # Stage 2 - Build docker image suitable for deployment
 FROM python:3.11-slim-bullseye AS runtime-image

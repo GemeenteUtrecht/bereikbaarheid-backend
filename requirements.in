@@ -1,8 +1,5 @@
-#
-# Define base dependencies
-#
-
 apiflask
+gunicorn
 psycopg2-binary
 
 black
