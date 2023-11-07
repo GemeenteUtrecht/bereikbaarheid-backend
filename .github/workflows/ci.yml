@@ -9,22 +9,18 @@ jobs:
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: 3.11
-
-      - name: Prepare Python env
-        uses: syphar/restore-virtualenv@v1
-        id: cache-virtualenv
+          cache: 'pip'
 
       - name: Install dependencies
         run: |
           pip install --upgrade pip pip-tools
           pip-sync requirements.txt
-        if: steps.cache-virtualenv.outputs.cache-hit != 'true'
 
       - name: Lint
         run: flake8
