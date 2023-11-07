@@ -8,9 +8,9 @@ apiflask==2.0.2
     # via -r requirements.in
 apispec==6.3.0
     # via apiflask
-black==23.9.1
+black==23.10.1
     # via -r requirements.in
-blinker==1.6.2
+blinker==1.7.0
     # via flask
 click==8.1.7
     # via
@@ -66,11 +66,11 @@ pluggy==1.3.0
     # via pytest
 psycopg2-binary==2.9.9
     # via -r requirements.in
-pycodestyle==2.11.0
+pycodestyle==2.11.1
     # via flake8
 pyflakes==3.1.0
     # via flake8
-pytest==7.4.2
+pytest==7.4.3
     # via
     #   -r requirements.in
     #   pytest-cov
@@ -78,5 +78,5 @@ pytest-cov==4.1.0
     # via -r requirements.in
 webargs==8.3.0
     # via apiflask
-werkzeug==3.0.0
+werkzeug==3.0.1
     # via flask
