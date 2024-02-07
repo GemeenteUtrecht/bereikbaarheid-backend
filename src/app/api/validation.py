@@ -162,3 +162,11 @@ def allowed_vehicle_types(vehicle_type):
     """
     if not vehicle_type.casefold() in map(str.casefold, vehicle["types"]):
         raise ValidationError("Must be one of: " + ", ".join(vehicle["types"]))
+
+
+def is_bus(vehicle_type: str) -> bool:
+    return vehicle_type.lower() == "bus"
+
+
+def is_company_car(vehicle_type: str) -> bool:
+    return vehicle_type.lower() == "bedrijfsauto"

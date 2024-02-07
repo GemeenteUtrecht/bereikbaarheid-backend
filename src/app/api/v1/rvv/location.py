@@ -2,8 +2,7 @@ from apiflask import fields, validators
 import logging
 
 from .. import api_v1
-from ...validation import bbox, VehicleValidationSchema
-from ... import vehicleTypes
+from ...validation import bbox, is_bus, is_company_car, VehicleValidationSchema
 from ....db import query_db
 
 LOGGER = logging.getLogger("gunicorn_error")
@@ -172,8 +171,8 @@ def query_db_permits(
         ) as level_a """  # noqa: E501 - ignore line-length in case of long table names
 
     query_params = {
-        "bedrijfsauto": vehicleTypes.vehicle_is_company_car(vehicle_type),
-        "bus": vehicleTypes.vehicle_is_bus(vehicle_type),
+        "bedrijfsauto": is_company_car(vehicle_type),
+        "bus": is_bus(vehicle_type),
         "aanhanger": vehicle_has_trailer,
         "lengte": vehicle_length,
         "breedte": vehicle_width,
