@@ -3,7 +3,7 @@ import os
 app_name = "API Nationaal wegenbestand"
 app_version = "0.5.4"
 
-DOCS_FAVICON = '/static/favicon.svg'
+DOCS_FAVICON = "/static/favicon.svg"
 
 # configure "Servers" dropdown in Swagger UI
 AUTO_SERVERS = False
