@@ -7,6 +7,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ## [Unreleased](https://github.com/GemeenteUtrecht/bereikbaarheid-backend/compare/v0.5.4...HEAD)
 
+### Changed
+- favicon docs page
+
 ### Fixed
 - refactored app configuration
 - refactored is_vehicleType validation functions
