@@ -7,6 +7,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ## [Unreleased](https://github.com/GemeenteUtrecht/bereikbaarheid-backend/compare/v0.5.4...HEAD)
 
+### Fixed
+- refactored app configuration
+
 
 ## [v0.5.4](https://github.com/GemeenteUtrecht/bereikbaarheid-backend/compare/v0.5.3...v0.5.4) - 2024-01-08
 
