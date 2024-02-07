@@ -2,8 +2,7 @@ from apiflask import fields, validators
 import logging
 
 from .. import api_v1
-from ...validation import VehicleValidationSchema
-from ... import vehicleTypes
+from ...validation import is_bus, is_company_car, VehicleValidationSchema
 from ....db import query_db
 
 LOGGER = logging.getLogger("gunicorn_error")
@@ -145,8 +144,8 @@ def query_db_traffic_signs(
     """
 
     query_params = {
-        "bus": vehicleTypes.vehicle_is_bus(vehicle_type),
-        "bedrijfsauto": vehicleTypes.vehicle_is_company_car(vehicle_type),
+        "bus": is_bus(vehicle_type),
+        "bedrijfsauto": is_company_car(vehicle_type),
         "aanhanger": vehicle_has_trailer,
         "lengte": vehicle_length,
         "breedte": vehicle_width,
