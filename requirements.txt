@@ -6,9 +6,9 @@
 #
 apiflask==2.1.0
     # via -r requirements.in
-apispec==6.3.1
+apispec==6.4.0
     # via apiflask
-black==23.12.1
+black==24.1.1
     # via -r requirements.in
 blinker==1.7.0
     # via flask
@@ -16,18 +16,18 @@ click==8.1.7
     # via
     #   black
     #   flask
-coverage==7.4.0
+coverage==7.4.1
     # via pytest-cov
 flake8==7.0.0
     # via -r requirements.in
-flask==3.0.0
+flask==3.0.2
     # via
     #   apiflask
     #   flask-httpauth
     #   flask-marshmallow
 flask-httpauth==4.8.0
     # via apiflask
-flask-marshmallow==0.15.0
+flask-marshmallow==1.2.0
     # via apiflask
 gunicorn==21.2.0
     # via -r requirements.in
@@ -35,13 +35,13 @@ iniconfig==2.0.0
     # via pytest
 itsdangerous==2.1.2
     # via flask
-jinja2==3.1.2
+jinja2==3.1.3
     # via flask
-markupsafe==2.1.3
+markupsafe==2.1.5
     # via
     #   jinja2
     #   werkzeug
-marshmallow==3.20.1
+marshmallow==3.20.2
     # via
     #   flask-marshmallow
     #   webargs
@@ -53,16 +53,15 @@ packaging==23.2
     # via
     #   apispec
     #   black
-    #   flask-marshmallow
     #   gunicorn
     #   marshmallow
     #   pytest
     #   webargs
 pathspec==0.12.1
     # via black
-platformdirs==4.1.0
+platformdirs==4.2.0
     # via black
-pluggy==1.3.0
+pluggy==1.4.0
     # via pytest
 psycopg2-binary==2.9.9
     # via -r requirements.in
@@ -70,7 +69,7 @@ pycodestyle==2.11.1
     # via flake8
 pyflakes==3.2.0
     # via flake8
-pytest==7.4.4
+pytest==8.0.0
     # via
     #   -r requirements.in
     #   pytest-cov
