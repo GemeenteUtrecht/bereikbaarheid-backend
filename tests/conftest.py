@@ -83,6 +83,7 @@ def vehicle_invalid_url_parameters_test_data(valid_url_parameters):
             "voertuigHeeftAanhanger",
         ),
         ({**valid_url_parameters, "voertuigHoogte": -1}, "voertuigHoogte"),
+        ({**valid_url_parameters, "voertuigHoogte": 0}, "voertuigHoogte"),
         ({**valid_url_parameters, "voertuigHoogte": 4.1}, "voertuigHoogte"),
         (
             remove_key_from_dict(valid_url_parameters, "voertuigHoogte"),
