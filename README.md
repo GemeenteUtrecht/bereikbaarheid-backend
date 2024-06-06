@@ -12,7 +12,7 @@ Deze repo is als volgt ingedeeld:
   * `config` bevat de verschillende config files
 * `Dockerfile` bevat config voor de Docker app server omgeving.
 * `Dockerfile_database` bevat config voor de Docker development database.
-* `Dockerfile_python_deps`; gebruikt voor onderhoud aan Python dependencies, zie het [maintenance document](./docs/maintenance.md) voor meer info.
+* `Dockerfile_python_deps`; gebruikt voor onderhoud aan Python dependencies, zie het kopje [Maintenance](#maintenance) voor meer info.
 * `.flake8`; Flake8 linting config, zie het [Contributing document](./CONTRIBUTING.md) voor meer info.
 * `pyproject.toml`; Black formatting config, zie het [Contributing document](./CONTRIBUTING.md) voor meer info.
 * `requirements.*` bevat de Python applicatie requirements.
