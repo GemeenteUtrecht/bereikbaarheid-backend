@@ -10,13 +10,13 @@ apispec==6.6.1
     # via apiflask
 black==24.4.2
     # via -r requirements.in
-blinker==1.8.1
+blinker==1.8.2
     # via flask
 click==8.1.7
     # via
     #   black
     #   flask
-coverage==7.5.1
+coverage==7.5.3
     # via pytest-cov
 flake8==7.0.0
     # via -r requirements.in
@@ -41,7 +41,7 @@ markupsafe==2.1.5
     # via
     #   jinja2
     #   werkzeug
-marshmallow==3.21.2
+marshmallow==3.21.3
     # via
     #   apiflask
     #   flask-marshmallow
@@ -60,7 +60,7 @@ packaging==24.0
     #   webargs
 pathspec==0.12.1
     # via black
-platformdirs==4.2.1
+platformdirs==4.2.2
     # via black
 pluggy==1.5.0
     # via pytest
@@ -70,7 +70,7 @@ pycodestyle==2.11.1
     # via flake8
 pyflakes==3.2.0
     # via flake8
-pytest==8.2.0
+pytest==8.2.2
     # via
     #   -r requirements.in
     #   pytest-cov
