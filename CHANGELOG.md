@@ -7,6 +7,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ## [Unreleased](https://github.com/GemeenteUtrecht/bereikbaarheid-backend/compare/v0.5.9...HEAD)
 
+### Changed
+- show min and max values for a field on the `/docs` page
+
 
 ## [v0.5.9](https://github.com/GemeenteUtrecht/bereikbaarheid-backend/compare/v0.5.8...v0.5.9) - 2024-06-06
 
