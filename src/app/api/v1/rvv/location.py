@@ -11,7 +11,11 @@ LOGGER = logging.getLogger("gunicorn_error")
 class RvvLocationValidationSchema(VehicleValidationSchema):
     lat = fields.Float(
         metadata={
-            "description": "De latitude van de locatie",
+            "description": (
+                "De latitude van de locatie. "
+                f"Min. {bbox['lat']['min']}, "
+                f"max. {bbox['lat']['max']}"
+            ),
             "example": 52.109,
             "title": "Latitude",
         },
@@ -23,7 +27,11 @@ class RvvLocationValidationSchema(VehicleValidationSchema):
 
     lon = fields.Float(
         metadata={
-            "description": "De longitude van de locatie",
+            "description": (
+                "De longitude van de locatie. "
+                f"Min. {bbox['lon']['min']}, "
+                f"max. {bbox['lon']['max']}"
+            ),
             "example": 5.1,
             "title": "Longitude",
         },
