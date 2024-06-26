@@ -37,7 +37,11 @@ class VehicleValidationSchema(Schema):
 
     voertuigAslast = fields.Integer(
         metadata={
-            "description": "De aslast van het voertuig in kilogram",
+            "description": (
+                "De aslast van het voertuig in kilogram. "
+                f"Min. {vehicle['axleWeight']['min']}, "
+                f"max. {vehicle['axleWeight']['max']}"
+            ),
             "example": 10000,
             "title": "Aslast van het voertuig",
         },
@@ -61,7 +65,11 @@ class VehicleValidationSchema(Schema):
 
     voertuigHoogte = fields.Float(
         metadata={
-            "description": "De hoogte van het voertuig in meters",
+            "description": (
+                "De hoogte van het voertuig in meters. "
+                f"Min. {vehicle['height']['min'] + 0.01}, "
+                f"max. {vehicle['height']['max']}"
+            ),
             "example": 3.13,
             "title": "Hoogte van het voertuig",
         },
@@ -77,7 +85,11 @@ class VehicleValidationSchema(Schema):
 
     voertuigLengte = fields.Float(
         metadata={
-            "description": "De lengte van het voertuig in meters",
+            "description": (
+                "De lengte van het voertuig in meters. "
+                f"Min. {vehicle['length']['min']}, "
+                f"max. {vehicle['length']['max']}"
+            ),
             "example": 13.95,
             "title": "Lengte van het voertuig",
         },
@@ -92,8 +104,9 @@ class VehicleValidationSchema(Schema):
     voertuigToegestaanMaximaalGewicht = fields.Integer(
         metadata={
             "description": (
-                "Het maximaal toegestane gewicht "
-                "van het voertuig in kilogram"
+                "Het maximaal toegestane gewicht van het voertuig in kilogram."
+                f" Min. {vehicle['maxAllowedWeight']['min']}, "
+                f"max. {vehicle['maxAllowedWeight']['max']}"
             ),
             "example": 24600,
             "title": "Maximaal toegestane gewicht van het voertuig",
@@ -109,7 +122,11 @@ class VehicleValidationSchema(Schema):
 
     voertuigTotaalGewicht = fields.Integer(
         metadata={
-            "description": "Het totale gewicht van het voertuig in kilogram",
+            "description": (
+                "Het totale gewicht van het voertuig in kilogram. "
+                f"Min. {vehicle['totalWeight']['min']}, "
+                f"max. {vehicle['totalWeight']['max']}"
+            ),
             "example": 22150,
             "title": "Totale gewicht van het voertuig",
         },
@@ -140,7 +157,11 @@ class VehicleValidationSchema(Schema):
 
     voertuigBreedte = fields.Float(
         metadata={
-            "description": "De breedte van het voertuig in meters",
+            "description": (
+                "De breedte van het voertuig in meters. "
+                f"Min. {vehicle['width']['min']}, "
+                f"max. {vehicle['width']['max']}"
+            ),
             "example": 2.55,
             "title": "Breedte van het voertuig",
         },
