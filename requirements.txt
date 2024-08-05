@@ -4,11 +4,11 @@
 #
 #    pip-compile --strip-extras requirements.in
 #
-apiflask==2.1.1
+apiflask==2.2.0
     # via -r requirements.in
 apispec==6.6.1
     # via apiflask
-black==24.4.2
+black==24.8.0
     # via -r requirements.in
 blinker==1.8.2
     # via flask
@@ -16,9 +16,9 @@ click==8.1.7
     # via
     #   black
     #   flask
-coverage==7.5.4
+coverage==7.6.1
     # via pytest-cov
-flake8==7.1.0
+flake8==7.1.1
     # via -r requirements.in
 flask==3.0.3
     # via
@@ -66,11 +66,11 @@ pluggy==1.5.0
     # via pytest
 psycopg2-binary==2.9.9
     # via -r requirements.in
-pycodestyle==2.12.0
+pycodestyle==2.12.1
     # via flake8
 pyflakes==3.2.0
     # via flake8
-pytest==8.2.2
+pytest==8.3.2
     # via
     #   -r requirements.in
     #   pytest-cov
