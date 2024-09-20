@@ -1,5 +1,5 @@
 # Stage 1 - Compile Python dependencies
-FROM python:3.11-slim-bullseye AS compile-image
+FROM python:3.12-slim-bullseye AS compile-image
 
 # create and use virtualenv
 RUN python -m venv /opt/venv
@@ -13,7 +13,7 @@ RUN pip install --upgrade pip pip-tools
 RUN pip-sync requirements.txt
 
 # Stage 2 - Build docker image suitable for deployment
-FROM python:3.11-slim-bullseye AS runtime-image
+FROM python:3.12-slim-bullseye AS runtime-image
 
 # copy python dependencies
 COPY --from=compile-image /opt/venv /opt/venv
