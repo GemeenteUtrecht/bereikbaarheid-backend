@@ -1,7 +1,7 @@
 import os
 
 app_name = "API Nationaal wegenbestand"
-app_version = "0.6.3"
+app_version = "0.6.4"
 
 DOCS_FAVICON = "/static/favicon.svg"
 
